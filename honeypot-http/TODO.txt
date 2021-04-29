@@ -1,0 +1,8 @@
+KEY ASPECTS
+-Method to answer http request
+-Need a method of logging
+-Need to alert user of honeypot
+   -Can be trigger via email
+   -Fail2Ban?
+-Need an index.html file - make it look like some failed web query
+
