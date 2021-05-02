@@ -47,6 +47,10 @@ class GetHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         logging.error(self.headers)
         SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
 
+    def do_POST(self): #Listen for POST req
+        logging.error(self.headers)
+        SimpleHTTPServer.SimpleHTTPRequestHandler.do_POST(self)
+
 Handler = GetHandler
 httpd = SocketServer.TCPServer(("", PORT), Handler)
 
