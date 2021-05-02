@@ -1,5 +1,5 @@
 # Honeypots
-Yet another sample honeypot repository
+Just another honeypot repository...
 
 ## About this project
 
@@ -13,7 +13,7 @@ Yet another sample honeypot repository
 
 # Protocol support
 
-## FTP and telnet
+## FTP and Telnet
 
 ## HTTP
 Two HTTP methods are currently recognized: `GET` and `POST`
