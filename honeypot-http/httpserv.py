@@ -2,26 +2,15 @@
 
 #Simple Python http honeypot
 #Functions
-#->Logging, alerting, banning via firewall api
+#->Logging, alerting, banning via firewall iptables
 #
 #
 #Usage: ./honeypot-http
 #       ./honeypot-http 0.0.0.0:8000
+#
+#Kill Python process cmd: kill -9 $(ps -A | grep python | awk '{print $1}')
 
 
-#Handle Python2/3 import error
-'''try:
-   
-    import http.server as SimpleHTTPServer
-    import http.server as BaseHTTPServer
-    import http.server as BaseHTTPRequestHandler
-    import socketserver as SocketServer
-except ImportError:
-    
-    import SimpleHTTPServer
-    import BaseHTTPServer
-    import SocketServer
-'''
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from sys import argv
 from socketserver import ThreadingMixIn
@@ -35,39 +24,40 @@ USE_HTTPS = True
 BIND_HOST = '0.0.0.0'
 PORT = 8000
 
-#web_directory = os.path.join(os.path.dirname(__file__), 'data')#find html page?
-#os.chdir(web_directory)
+web_dir = os.path.join(os.path.dirname(__file__), 'data')
+os.chdir(web_dir)
 
 #Start out with simple http webserver
 
-class GetHandler(BaseHTTPRequestHandler):#SimpleHTTPServer.SimpleHTTPRequestHandler
+class GetHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         #if self.path == '/':
-            #self.path = 'mywebpage.html'
+         #   self.path = '/index.html'
+        self.write_response(b'')
         logging.error(self.headers)
+        #self.wfile.write(b'Hello Bro\t' +threading.currentThread().getName().encode() + b'\t')
+        self.wfile.write(bytes("<html><head><p>Parse error: syntax error, unexpected end of file in /home/pbutts/public_html/wp-content/themes/mycommerce/pro_framework/local.php on line 812</p></head></html>","utf-8")) 
+       
+    
+    def do_POST(self): #Listen for POST req
+        content_length = int(self.headers['Content-Length']) # <--- Gets the size of data
+        body = self.rfile.read(content_length) #echo body
+    
+        logging.error(self.headers)
+        self.wfile.write(bytes("<html><head><p>Parse error: syntax error, unexpected end of file in /home/pbutts/public_html/wp-content/themes/mycommerce/pro_framework/local.php on line 812</p></head></html>","utf-8"))
+        
+        self.write_response(body)
+    
+
+    def write_response(self, content):
         self.send_response(200)
         self.end_headers()
-        #self.wfile.write(b'Hello Bro\t' +threading.currentThread().getName().encode() + b'\t')
-        self.wfile.write(bytes("<html><head><p>Parse error: syntax error, unexpected end of file in /home/pbutts/public_html/wp-content/themes/bettycommerce/includes/pro_framework/local.php on line 812</p></head>/html>","utf-8")) 
-       
-    '''
-    def do_POST(self): #Listen for POST req
-        content_length = int(self.header.get('content-length', 0)) #echo out header
-        body = self.rfile.read(content_length) #echo body
-        #self.write_response(body)
-        logging.error(self.headers)
-        SimpleHTTPServer.SimpleHTTPRequestHandler.do_POST(self)
-    '''
-
-    '''def write_response(self, content):
-        self.send_response(200)
-        self.end_hees/pro_framework/local.php on line 812</p></head>aders()
         self.wfile.write(content)
 
-        print(self.headeres/pro_framework/local.php on line 812</p></head>s)es/pro_framework/local.php on line 812</p></head>
+        print(self.headers)
         print(content.decode('utf-8')) #Print info back to console
-    '''
+    
 
 
 #For continuous streaming it is better to use sockets via BaseHTTPServer
@@ -76,17 +66,9 @@ class ThreadingSimpleServer(ThreadingMixIn, HTTPServer):
 
 
 
-'''
-#Parse cmdline args
-if len(argv) > 1:
-    arg = argv[1].split(':')
-    BIND_HOST = arg[0]
-    PORT = int(arg[1])
-'''
-
 
 def runServer():
-    printf(f'Listening on http://{BIND_HOST}:{PORT}\n')
+    print(f'Listening on http://{BIND_HOST}:{PORT}\n')
     buffer=1
     sys.stderr = open('http.log', 'w', buffer)
     server = ThreadingSimpleServer((BIND_HOST, PORT), GetHandler)
@@ -99,5 +81,14 @@ def runServer():
 
 
 if __name__ == '__main__':
-    runServer()
+
+    #Parse cmdline args
+    if len(argv) > 1:
+        arg = argv[1].split(':')
+        BIND_HOST = arg[0]
+        PORT = int(arg[1])
+        runServer()
+
+    else:
+        runServer()
 

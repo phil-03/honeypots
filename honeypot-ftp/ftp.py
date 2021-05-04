@@ -15,3 +15,5 @@ BANNER = 'Server\nName: '
 
 # Socket timeout in seconds
 TIMEOUT = 10
+
+
