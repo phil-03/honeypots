@@ -1,6 +1,7 @@
 KEY ASPECTS
 -Method to answer http request
 -Need a method of logging
+-Make page look like fake wordpress site
 -Need to alert user of honeypot
    -Can be trigger via email
    -Fail2Ban?

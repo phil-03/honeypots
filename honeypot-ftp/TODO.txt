@@ -1,4 +1,5 @@
 #Honeypot FTP
+
 -Use sockets for connection
 -Consider using daemon/cron job to check its status
 -Add malware detection

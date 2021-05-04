@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 
 #Simple Python http honeypot
 #Functions
@@ -18,8 +18,8 @@ import logging
 BIND_HOST = 'localhost'
 PORT = 8000
 
-web_dir = os.path.join(os.path.dirname(__file__), 'web')
-os.chdir(web_dir)
+web_directory = os.path.join(os.path.dirname(__file__), 'data')
+os.chdir(web_directory)
 #Start out with simple http webserver
 
 
@@ -50,6 +50,9 @@ class GetHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
     def do_POST(self): #Listen for POST req
         logging.error(self.headers)
         SimpleHTTPServer.SimpleHTTPRequestHandler.do_POST(self)
+
+
+
 
 Handler = GetHandler
 httpd = SocketServer.TCPServer(("", PORT), Handler)
