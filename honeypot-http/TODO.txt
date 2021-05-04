@@ -1,9 +1,13 @@
 KEY ASPECTS
--Method to answer http request
--Need a method of logging
--Make page look like fake wordpress site
+-Method to answer http request - GET POST HEAD
+-Need a method of logging - logger python
+-Added multi-threading for multi-request
+	- Current just collect up the response and write it as a unit at the end (which actually does nothing if your stream is infinite). To not break streaming it is better to use sockets via BaseHTTPServer.
+-Make page look like fake broken wordpress site
 -Need to alert user of honeypot
    -Can be trigger via email
    -Fail2Ban?
--Need an index.html file - make it look like some failed web query
+ -Openssl for some cert security
+-Whats next?
+
 
