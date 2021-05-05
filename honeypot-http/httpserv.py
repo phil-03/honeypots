@@ -36,7 +36,7 @@ class GetHandler(BaseHTTPRequestHandler):
          #   self.path = '/index.html'
         self.write_response(b'')
         logging.error(self.headers)
-        self.wfile.write(b'Hello Bro\t' +threading.currentThread().getName().encode() + b'\t')
+        #self.wfile.write(b'Hello Bro\t' +threading.currentThread().getName().encode() + b'\t')
         self.wfile.write(bytes("<html><head><p>Parse error: syntax error, unexpected end of file in /home/pbutts/public_html/wp-content/themes/mycommerce/pro_framework/local.php on line 812</p></head></html>","utf-8")) 
        
     
