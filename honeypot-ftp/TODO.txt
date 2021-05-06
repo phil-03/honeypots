@@ -1,11 +1,15 @@
 #Honeypot FTP
 
 -Use sockets for connection
+-Multithreaded?
+-Catch malware files? - Verson vsftpd 2.3.4 has backdoor vuln
 -Consider using daemon/cron job to check its status
--Add malware detection
+-Add malware detection -Libemu, it is a library that performs x86 emulation and shellcode detection
+Libemu, which can detect system calls and present them in a nice graph by using dot. Libemu supports reading x86 instructions and emulating the instructions to detect shellcode.
+
 -Logging or alerting
 -Send email
 
 
-
+-TODO - leverage pylibemu
 

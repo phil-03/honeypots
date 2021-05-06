@@ -21,3 +21,7 @@ or for a more advanced honeypot`
 
 ## HTTP
 Two HTTP methods are currently recognized: `GET` and `POST`
+
+### TODO:
+* Add ssh honeypot
+* Add keylogger functionality

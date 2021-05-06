@@ -32,8 +32,6 @@ os.chdir(web_dir)
 class GetHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
-        #if self.path == '/':
-         #   self.path = '/index.html'
         self.write_response(b'')
         logging.error(self.headers)
         #self.wfile.write(b'Hello Bro\t' +threading.currentThread().getName().encode() + b'\t')
@@ -74,7 +72,7 @@ def runServer():
     
 
     try:
-        server.serve_forever()
+        server.serve_forever()REAL_HOST 
     except KeyboardInterrupt:
         pass
 
