@@ -72,7 +72,7 @@ def runServer():
     
 
     try:
-        server.serve_forever()REAL_HOST 
+        server.serve_forever() 
     except KeyboardInterrupt:
         pass
 
