@@ -1,4 +1,5 @@
-#Simple ftp honeypot
+#Simple ftp honeypo:w
+t
 import socket
 import smtplib
 import atexit
@@ -7,7 +8,7 @@ from datetime import datetime
 
 
 # Change to port you will logg data to
-RHOST = '192.168.80.131'
+RHOST = '192.168.X.X'
 RPORT = 8000
 
 # FAKEBAN displayed needs to be vulnerable service
