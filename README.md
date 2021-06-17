@@ -2,7 +2,7 @@
 ### Just another honeypot repository...
 
 ## About this project
-This project is an attempt at emulating protocols FTP and HTTP. You can utilize 
+This project is an attempt at emulating the protocol FTP. You can utilize 
 fail2ban for logging and iptables to set your packet filtering rules.
 Installation and setup for those tools will not be included in this setup.
 The http program only receives GET and POST request. The ftp honeypot is intended to
@@ -30,13 +30,6 @@ and make sure you whitelist your ip address.
 ## FTP 
 `python3 ftp.py`
 
-## HTTP
-`Usage: ./honeypot-http
-       ./honeypot-http 0.0.0.0:8000`
-
-Two HTTP methods are currently recognized: `GET` and `POST`
-
 ### TODO:
 * Add multithreading for ftp
-* Add honeypot
 * Add keylogger functionality
